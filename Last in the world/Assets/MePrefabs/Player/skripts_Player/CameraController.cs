@@ -5,18 +5,36 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public Transform playerTransform;
-    public Vector3 offset;
+    public float CameraY = 5f;
+    public float CameraZ = 3f;
     public float camPositionSpeed = 5f;
+    public static bool CameraTrigger;
+    
     void Start()
     {
-        
+        CameraTrigger = true;
     }
 
     
     void FixedUpdate()
     {
-        Vector3 newCamPosition = new Vector3 (offset.x, playerTransform.position.y + offset.y, playerTransform.position.z + offset.z);
-        transform.position = Vector3.Lerp(transform.position, newCamPosition, camPositionSpeed * Time.deltaTime);
-
+        if (CameraTrigger == true)
+        {
+            Vector3 newCamPosition = new Vector3(10.5f, playerTransform.position.y + CameraY, playerTransform.position.z + CameraZ);
+            transform.position = Vector3.Lerp(transform.position, newCamPosition, camPositionSpeed * Time.deltaTime);
+            
+        }
+        else if (CameraTrigger == false)
+        {
+            
+            Vector3 newCamPosition = new Vector3(7.5f, playerTransform.position.y + CameraY, playerTransform.position.z + CameraZ);
+            transform.position = Vector3.Lerp(transform.position, newCamPosition, camPositionSpeed * Time.deltaTime);
+        }
+        
+        
     }
+
+    
+
+    
 }
